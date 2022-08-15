@@ -15,30 +15,37 @@ import pt.mmkamei.restspring.entity.Produto;
 import pt.mmkamei.restspring.service.ProdutoService;
 
 @RestController
-@RequestMapping( value = "/produto")
+@RequestMapping(value = "/produto")
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoService service;
+	@Autowired
+	private ProdutoService service;
 
-    @PostMapping(value = "/save")
-    public ResponseEntity<Produto> salvaProduto(@RequestBody Produto produto) throws Exception {
-        produto = service.save(produto);
+	@PostMapping(value = "/save")
+	public ResponseEntity<Produto> salvaProduto(@RequestBody Produto produto) throws Exception {
 
-        return ResponseEntity.ok().body(produto);
-    }
+		produto = service.save(produto);
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Produto> buscaProduto(@PathVariable Long id) {
-        Produto produto = service.findById(id);
+		return ResponseEntity.ok().body(produto);
 
-        return ResponseEntity.ok().body(produto);
-    }
+	}
 
-    @GetMapping(value = "/busca-todos")
-    public ResponseEntity<List<Produto>> buscaTodosProdutos() {
-        List<Produto> produtos = service.findAll();
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Produto> buscaProduto(@PathVariable Long id) {
 
-        return ResponseEntity.ok().body(produtos);
-    }
+		Produto produto = service.findById(id);
+
+		return ResponseEntity.ok().body(produto);
+
+	}
+
+	@GetMapping(value = "/busca-todos")
+	public ResponseEntity<List<Produto>> buscaTodosProdutos() {
+
+		List<Produto> produtos = service.findAll();
+
+		return ResponseEntity.ok().body(produtos);
+
+	}
+
 }

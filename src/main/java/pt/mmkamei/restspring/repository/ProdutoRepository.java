@@ -7,5 +7,5 @@ import pt.mmkamei.restspring.entity.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-    
+
 }

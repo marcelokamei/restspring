@@ -14,28 +14,25 @@ import pt.mmkamei.restspring.exception.ProductPriceException;
 
 @ControllerAdvice
 public class ProdutoControllerAdvice extends ResponseEntityExceptionHandler {
-    
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> erro(){
 
-        Map<String, Object> body = new HashMap<String, Object>();
-        body.put("message", "Ocorreu um erro genérico.");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-    }
+	@ExceptionHandler(ProductNullException.class)
+	public ResponseEntity<Object> capturaErroNull() {
 
-    @ExceptionHandler(ProductNullException.class)
-    public ResponseEntity<Object> capturaErroNull(){
+		Map<String, Object> body = new HashMap<String, Object>();
 
-        Map<String, Object> body = new HashMap<String, Object>();
-        body.put("message", "Verifique os campos do produto.");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-    }
-    
-    @ExceptionHandler(ProductPriceException.class)
-    public ResponseEntity<Object> capturaErroPreco(){
+		body.put("message", "Verifique os campos do produto");
 
-        Map<String, Object> body = new HashMap<String, Object>();
-        body.put("message", "Verifique o preço do produto.");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
-    }
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+	}
+
+	@ExceptionHandler(ProductPriceException.class)
+	public ResponseEntity<Object> capturaErroPreco() {
+
+		Map<String, Object> body = new HashMap<String, Object>();
+
+		body.put("message", "Verifique o preço do produto");
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+	}
+
 }
